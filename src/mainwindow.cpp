@@ -25,7 +25,7 @@ void MainWindow::makePlot(bool firstTime)
         ui->customPlot->removeGraph(0);
     ui->customPlot->addGraph(0);
 
-    ui->customPlot->graph(0)->setData(xAxis, m_yVec);
+    ui->customPlot->graph(0)->setData(xAxis, QVector<double>::fromStdVector(m_yVec));
     // give the axes some labels:
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
@@ -36,16 +36,7 @@ void MainWindow::makePlot(bool firstTime)
     ui->customPlot->replot();
 }
 
-void  MainWindow::KeepPeaksAndValleys()
-{
 
-    for(auto i=1;i<m_yVec.size()-1;i++)
-    {
-       if((m_yVec[i]>m_yVec[i-1] && m_yVec[i]>m_yVec[i+1]) || (m_yVec[i]<m_yVec[i-1] && m_yVec[i]<m_yVec[i+1])) continue;
-       m_yVec.removeAt(i);
-       i--;
-    }
-}
 
 void MainWindow::on_Btn_loadFile_clicked()
 {
@@ -56,10 +47,10 @@ void MainWindow::on_Btn_loadFile_clicked()
      while (ifs.good()) {
        double x;
        ifs>>x;
-       m_yVec.append(x);
+       m_yVec.emplace_back(x);
      }
      ifs.close();
-     KeepPeaksAndValleys();
+     m_rfCounter.KeepPeaksAndValleys(m_yVec);
      makePlot();
 
 }
@@ -72,8 +63,8 @@ void MainWindow::on_btn_cycle_clicked()
             auto outerStress = std::abs(m_yVec[i+3]-m_yVec[i]);
             auto innerStress = std::abs(m_yVec[i+2]-m_yVec[i+1]);
             if(innerStress<=outerStress) {
-                m_yVec.removeAt(i+1);
-                m_yVec.removeAt(i+1);
+                m_yVec.erase(m_yVec.begin()+i+1);
+                m_yVec.erase(m_yVec.begin()+i+1);
                 break;
 
             }

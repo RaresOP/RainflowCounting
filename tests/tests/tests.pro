@@ -1,14 +1,17 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-04T11:31:07
+# Project created by QtCreator 2019-04-20T17:21:02
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += testlib
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
+QT       -= gui
 
-TARGET = FirstProject
+TARGET = tst_rainflowtests
+CONFIG   += console
+CONFIG   -= app_bundle
+
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -24,14 +27,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    qcustomplot.cpp
+        tst_rainflowtests.cpp 
 
-HEADERS += \
-        mainwindow.h \
-    qcustomplot.h \
-    rainflowcounter.h
-
-FORMS += \
-        mainwindow.ui
+DEFINES += SRCDIR=\\\"$$PWD/\\\"

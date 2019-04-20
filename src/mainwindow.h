@@ -5,6 +5,7 @@
 #include <qcustomplot.h>
 #include <qvector.h>
 #include <memory>
+#include "rainflowcounter.h"
 namespace Ui {
 class MainWindow;
 }
@@ -20,12 +21,12 @@ public:
 private slots:
     void makePlot(bool firstTime=true);
     void on_Btn_loadFile_clicked();
-    void KeepPeaksAndValleys();
     void on_btn_cycle_clicked();
 
 private:
     Ui::MainWindow               *ui;
-    QVector<double>              m_yVec;
+    std::vector<double>          m_yVec;
+    RainflowCounter              m_rfCounter;
 
 
 
