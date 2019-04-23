@@ -2,6 +2,7 @@
 #define RAINFLOWCOUNTER_H
 
 #include <vector>
+#include <algorithm>
 class RainflowCounter
 {
 public:
@@ -17,6 +18,24 @@ public:
                it--;
             }
         }
+    }
+    bool BoundedByExtremeties(double firstExtremity, double firstValue, double secondValue, double secondExtremity)
+    {
+        auto minExtremity = std::min(firstExtremity,secondExtremity);
+        auto maxExtremity = std::max(firstExtremity,secondExtremity);
+        return firstValue == std::clamp(firstValue,minExtremity,maxExtremity) &&
+                std::clamp(secondValue,minExtremity, maxExtremity);
+    }
+
+    bool IsCycle4PointsMethod(double firstPoint, double secondPoint, double thirdPoint, double fourthPoint)
+    {
+        if(BoundedByExtremeties(firstPoint,secondPoint,thirdPoint,fourthPoint))
+        {
+            auto outerStress = std::abs(fourthPoint-firstPoint);
+            auto innerStress = std::abs(thirdPoint-secondPoint);
+            return innerStress<=outerStress;
+        }
+        return false;
     }
 
 };

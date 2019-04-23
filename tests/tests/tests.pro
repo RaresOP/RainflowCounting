@@ -30,3 +30,5 @@ SOURCES += \
         tst_rainflowtests.cpp 
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+CONFIG += c++1z

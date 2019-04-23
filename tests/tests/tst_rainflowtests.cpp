@@ -10,6 +10,10 @@ public:
 
 private Q_SLOTS:
     void testKeepPeaksAndValleys();
+    void testBoundedByExtremetiesTrue();
+    void testBoundedByExtremetiesFalse();
+    void testIsCycle4PointsMethodFalse();
+    void testIsCycle4PointsMethodTrue();
 
 private:
     RainflowCounter rfCounter;
@@ -28,5 +32,24 @@ void RainflowTests::testKeepPeaksAndValleys()
     QVERIFY(testValues==expectedValues);
 }
 
+void RainflowTests::testBoundedByExtremetiesTrue()
+{
+    QVERIFY(rfCounter.BoundedByExtremeties(1,4,6,9) == true);
+}
+
+void RainflowTests::testBoundedByExtremetiesFalse()
+{
+    QVERIFY(rfCounter.BoundedByExtremeties(5,4,6,9) == false);
+}
+
+void RainflowTests::testIsCycle4PointsMethodTrue()
+{
+    QVERIFY(rfCounter.IsCycle4PointsMethod(2,5,3,6) == true);
+}
+
+void RainflowTests::testIsCycle4PointsMethodFalse()
+{
+    QVERIFY(rfCounter.IsCycle4PointsMethod(2,5,0,6) == false);
+}
 QTEST_MAIN(RainflowTests)
 #include "tst_rainflowtests.moc"
