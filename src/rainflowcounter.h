@@ -24,7 +24,7 @@ public:
         auto minExtremity = std::min(firstExtremity,secondExtremity);
         auto maxExtremity = std::max(firstExtremity,secondExtremity);
         return firstValue == std::clamp(firstValue,minExtremity,maxExtremity) &&
-                std::clamp(secondValue,minExtremity, maxExtremity);
+                secondValue == std::clamp(secondValue,minExtremity, maxExtremity);
     }
 
     bool IsCycle4PointsMethod(double firstPoint, double secondPoint, double thirdPoint, double fourthPoint)

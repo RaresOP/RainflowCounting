@@ -44,14 +44,10 @@ void MainWindow::on_Btn_loadFile_clicked()
                 this,tr("Open file"),"/home","All files(*.*);;Text file(*.txt)"
                 );
     std::ifstream ifs (filename.toStdString(), std::ifstream::in);
-     while (ifs.good()) {
-       double x;
-       ifs>>x;
-       m_yVec.emplace_back(x);
-     }
-     ifs.close();
-     m_rfCounter.KeepPeaksAndValleys(m_yVec);
-     makePlot();
+    std::istream_iterator<double> input(ifs);
+    std::copy(input, std::istream_iterator<double>(), std::back_inserter(m_yVec));
+    m_rfCounter.KeepPeaksAndValleys(m_yVec);
+    makePlot();
 
 }
 
