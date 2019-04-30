@@ -14,6 +14,9 @@ private Q_SLOTS:
     void testBoundedByExtremetiesFalse();
     void testIsCycle4PointsMethodFalse();
     void testIsCycle4PointsMethodTrue();
+    void testRemoveNextCycleTrue();
+    void testRemoveNextCycleFalse();
+    void testRemoveNextCycleValues();
 
 private:
     RainflowCounter rfCounter;
@@ -50,6 +53,26 @@ void RainflowTests::testIsCycle4PointsMethodTrue()
 void RainflowTests::testIsCycle4PointsMethodFalse()
 {
     QVERIFY(rfCounter.IsCycle4PointsMethod(2,5,0,6) == false);
+}
+
+void RainflowTests::testRemoveNextCycleTrue()
+{
+    std::vector<double> values{2,5,3,6,2,4,1,6,1,4,1,5,3,6,3,6,1,5,2};
+    QVERIFY(rfCounter.RemoveNextCycle(values) == true);
+}
+
+void RainflowTests::testRemoveNextCycleFalse()
+{
+    std::vector<double> values{2,6,1,5,2};
+    QVERIFY(rfCounter.RemoveNextCycle(values) == false);
+}
+
+void RainflowTests::testRemoveNextCycleValues()
+{
+    std::vector<double> values{2,5,3,6,2,4,1,6,1,4,1,5,3,6,3,6,1,5,2};
+    std::vector<double> valuesCycleRemoved{2,6,2,4,1,6,1,4,1,5,3,6,3,6,1,5,2};
+    rfCounter.RemoveNextCycle(values);
+    QCOMPARE(values,valuesCycleRemoved);
 }
 QTEST_MAIN(RainflowTests)
 #include "tst_rainflowtests.moc"

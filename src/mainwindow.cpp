@@ -53,15 +53,7 @@ void MainWindow::on_Btn_loadFile_clicked()
 
 void MainWindow::on_btn_cycle_clicked()
 {
-    for(auto i=0;i<m_yVec.size()-3;i++) {
-         if(m_rfCounter.BoundedByExtremeties(m_yVec[i],m_yVec[i+1],m_yVec[i+2],m_yVec[i+3])) {
-            if(m_rfCounter.IsCycle4PointsMethod(m_yVec[i],m_yVec[i+1],m_yVec[i+2],m_yVec[i+3])) {
-                m_yVec.erase(m_yVec.begin()+i+1);
-                m_yVec.erase(m_yVec.begin()+i+1);
-                break;
-            }
-        }
-    }
+    m_rfCounter.RemoveNextCycle(m_yVec);
     makePlot(false);
 
 }

@@ -38,6 +38,20 @@ public:
         return false;
     }
 
+    bool RemoveNextCycle(std::vector<double> &values)
+    {
+        for(auto it=values.begin();it<values.end()-3;++it) {
+                 if(BoundedByExtremeties(*it,*(it+1),*(it+2),*(it+3))) {
+                    if(IsCycle4PointsMethod(*it,*(it+1),*(it+2),*(it+3))) {
+                        values.erase(it+1);
+                        values.erase(it+1);
+                        return true;
+                    }
+                }
+            }
+            return false;
+    }
+
 };
 
 
