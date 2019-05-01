@@ -1,6 +1,6 @@
 #include <QString>
 #include <QtTest>
-#include "../../src/rainflowcounter.h"
+#include "../../include/rainflowcounter.h"
 class RainflowTests : public QObject
 {
     Q_OBJECT

@@ -29,11 +29,11 @@ SOURCES += \
     qcustomplot.cpp
 
 HEADERS += \
-        mainwindow.h \
-    qcustomplot.h \
-    rainflowcounter.h
+       ../include/mainwindow.h \
+    ../include/qcustomplot.h \
+    ../include/rainflowcounter.h
 
 FORMS += \
-        mainwindow.ui
+        ../view/mainwindow.ui
 
 CONFIG += c++1z
